@@ -11,23 +11,23 @@ class FBGroup(object):
 		card = self.soup.findAll("td", {"class" : "_51m- vTop hLeft pam"}) # 1 td / profil
 		return card
 
-	def getNom(self):
-		nom = self.soup.findAll("a", {"id" : "js_1mf"}) # à terminer
-		return nom
+	def getname(self):
+		name = self.soup.findAll("a", {"id" : "js_1mf"}) # à terminer
+		return name
 
-	def getLiens(self):
-		liens = self.soup.findAll("a", {"class" : "_8o _8r lfloat _ohe"}, href=True) # list['href']
-		l = [l['href'] for l in liens]
+	def getlink(self):
+		link = self.soup.findAll("a", {"class" : "_8o _8r lfloat _ohe"}, href=True) # list['href']
+		l = [l['href'] for l in link]
 		return l
 
-	def getPhotos(self):
-		photos = self.soup.findAll("img", {"class" : "_s0 _rv img"}, src=True) # list['src']
-		l = [p['src'] for p in photos]
+	def getpictures(self):
+		pictures = self.soup.findAll("img", {"class" : "_s0 _rv img"}, src=True) # list['src']
+		l = [p['src'] for p in pictures]
 		return l
 
-	def getEtudes(self):
-		etudes = self.soup.findAll("div", {"class" : "_17tq"})
-		l = [e.get_text() for e in etudes]
+	def getstudies(self):
+		studies = self.soup.findAll("div", {"class" : "_17tq"})
+		l = [e.get_text() for e in studies]
 		return l
 
 	def getDate(self):
@@ -36,9 +36,9 @@ class FBGroup(object):
 		return l
 
 	def createJson(self):
-		liste = [{'lien': self.getLiens(),
-				  'photo': self.getPhotos(),
-				  'etudes': self.getEtudes(),
-				  "date": self.getDate()} for liens, photos, etudes, date in zip(self.getLiens(), self.getPhotos(), self.getEtudes(), self.getDate())]
+		liste = [{'lien': self.getLink(),
+				  'photo': self.getPictures(),
+				  'studies': self.getStudies(),
+				  "date": self.getDate()} for link, pictures, studies, date in zip(self.getLink(), self.getPictures(), self.getStudies(), self.getDate())]
 		
 		return json.dumps(liste)
