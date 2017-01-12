@@ -8,4 +8,4 @@ if __name__ == '__main__':
 	u.urlToFile("https://www.facebook.com/groups/617704971719415/members/", file)
 	
 	f = FBGroup(file)
-	print(str(f.getStudies()))
+	print(str(f.getTable()))

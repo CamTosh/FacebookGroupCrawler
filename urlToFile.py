@@ -4,12 +4,6 @@ class URLToFile(object):
 
 	def urlToFile(self, url, file):
 		r = requests.get(url)
-		f = open(r.text, "w")
-		f.write(r)
+		f = open(file, "w", encoding='utf8')
+		f.write(r.text)
 		f.close()
-
-		if f.read():
-			return True
-		else:
-			return False
-			
