@@ -63,3 +63,8 @@ class FBGroup(object):
 		
 		return json.dumps(liste)
 
+	def getPhotoFromLink(self, link):
+		f = open(link, encoding="utf8")
+		soup = BeautifulSoup(f, "html.parser")
+		p = soup.find("img", {"class" : "profilePic img"}, src=True)
+		return p['src']
